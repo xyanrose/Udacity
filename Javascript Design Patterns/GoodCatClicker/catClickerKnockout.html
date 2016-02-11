@@ -4,13 +4,17 @@
 		<meta charset="UTF-8">
 		<title>Cat Clicker</title>
 	</head>
-	<body>
-		<div id="cat">
+	<body data-bind="with:$root">
+		<div id="cat" data-bind="with:currentCat">
 			<h2 data-bind="text: name"></h2>
 			<div data-bind="text: clickCount"></div>
-			<img data-bind="click: incrementCounter, attr: {src: imgSrc}" src="" alt="cute cat">
+			<img data-bind="click: $parent.incrementCounter, attr: {src: imgSrc}" src="" alt="cute cat">
+			
 		</div>
 	</body>
+	<div data-bind="foreach: catList">
+			<li data-bind="text: $data.name, click: $parent.swapCat.bind($data)"></li>
+	</div>
 	<script src='D:/Projects/Udacity/bower_components/knockout/dist/knockout.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="clickerCatViewModel.js"></script>
